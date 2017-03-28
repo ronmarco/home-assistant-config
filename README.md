@@ -14,7 +14,7 @@ See below for my latest Home Assistant configuration. I tried to keep the UI sim
 * IP Camera - [Foscam](http://amzn.to/2nrXmEK)
 * Voice control - [Echo Dot](http://amzn.to/2ng4nr5)
   * Portable voice control - [Echo Tap](http://amzn.to/2mNqrNI)
-* Media Player - [Google Chromecast](https://store.google.com/config/chromecast_2015?hl=en&utm_source=google-com-chromecast&utm_medium=MS&utm_campaign=retailers-buy-tv)
+* Media Player - [Google Chromecast](https://store.google.com/config/chromecast_2015)
 * Network Attached Storage - [FreeNAS](http://www.freenas.org/) (I built my NAS based on [this motherboard](http://amzn.to/2ng2hHW))
   * Media Server - [Plex](https://www.plex.tv/)
 
