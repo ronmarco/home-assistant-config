@@ -19,3 +19,7 @@ See below for my latest Home Assistant configuration. I tried to keep the UI sim
 
 # Screenshots
 ![screenshot](images/1.home.png)
+![screenshot](images/2.bedroom.png)
+![screenshot](images/3.living.room.png)
+![screenshot](images/4.environment.png)
+![screenshot](images/5.network.png)
