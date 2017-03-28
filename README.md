@@ -16,3 +16,6 @@ See below for my latest Home Assistant configuration. I tried to keep the UI sim
   * Portable voice control - [Echo Tap](http://amzn.to/2mNqrNI)
 * Network Attached Storage - [FreeNAS](http://www.freenas.org/) (I built my NAS based on [this motherboard](http://amzn.to/2ng2hHW))
   * Media Server - [Plex](https://www.plex.tv/)
+
+# Screenshots
+![screenshot](images/1 home.png)
