@@ -1,0 +1,12 @@
+## input_slider
+
+  alarm_clock_hour:
+    initial: 7
+    min: 0
+    max: 23
+    step: 1
+  alarm_clock_minute:
+    initial: 15
+    min: 0
+    max: 55
+    step: 5

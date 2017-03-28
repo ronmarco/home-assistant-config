@@ -1,0 +1,158 @@
+## Scripts
+
+## Living Room
+# chromecast
+living_room_vol_to_4:
+  sequence:
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.living_room
+        volume_level: 0.4
+
+## Bedroom Lights
+# Turns on either one or both bulbs based on the brightness outside. Alternates which bulb by day of the month
+bright:
+  sequence:
+    - service_template: >
+        {% if is_state("sun.sun", "below_horizon") %}
+            script.half_bright
+        {% else %}
+            script.full_bright
+        {% endif %}
+full_bright:
+  sequence:
+    - service: light.turn_on
+      data: 
+        entity_id: group.bedroom_lights
+        brightness: 255
+    - service: homeassistant.turn_off
+      data: 
+        entity_id: switch.bedroom_nightstand
+half_bright:
+  sequence:
+    - service: light.turn_on
+      data_template:
+        entity_id: >
+          {% if is_state("sensor.date_odd", "odd") %}
+              light.lux_lamp_1
+          {% elif is_state("sensor.date_odd", "even") %}
+              light.lux_lamp
+          {% endif %}
+        brightness: 255
+    - service: light.turn_off
+      data_template:
+        entity_id: >
+          {% if is_state("sensor.date_odd", "odd") %}
+              light.lux_lamp
+          {% elif is_state("sensor.date_odd", "even") %}
+              light.lux_lamp_1
+          {% endif %}
+    - service: homeassistant.turn_off
+      data: 
+        entity_id: switch.bedroom_nightstand
+# Turns on one bulb dimmly and alternates which bulb based on day of month
+twilight:
+  sequence:
+    - service: light.turn_on
+      data_template:
+        entity_id: >
+          {% if is_state("sensor.date_odd", "odd") %}
+              light.lux_lamp_1
+          {% elif is_state("sensor.date_odd", "even") %}
+              light.lux_lamp
+          {% endif %}
+        brightness: 80
+    - service: light.turn_off
+      data_template:
+        entity_id: >
+          {% if is_state("sensor.date_odd", "odd") %}
+              light.lux_lamp
+          {% elif is_state("sensor.date_odd", "even") %}
+              light.lux_lamp_1
+          {% endif %}
+    - service: homeassistant.turn_off
+      data: 
+        entity_id: switch.bedroom_nightstand
+dusk:
+  sequence:
+    - service: light.turn_on
+      data_template:
+        entity_id: >
+          {% if is_state("sensor.date_odd", "odd") %}
+              light.lux_lamp_1
+          {% elif is_state("sensor.date_odd", "even") %}
+              light.lux_lamp
+          {% endif %}
+        brightness: 0
+    - service: light.turn_off
+      data_template:
+        entity_id: >
+          {% if is_state("sensor.date_odd", "odd") %}
+              light.lux_lamp
+          {% elif is_state("sensor.date_odd", "even") %}
+              light.lux_lamp_1
+          {% endif %}
+    - service: homeassistant.turn_off
+      data: 
+        entity_id: switch.bedroom_nightstand
+reading:
+  sequence:
+    - service: light.turn_off
+      data: 
+        entity_id: group.bedroom_lights
+    - service: homeassistant.turn_on
+      data: 
+        entity_id: switch.bedroom_nightstand
+        # brightness: 255
+all_off:
+  sequence:
+    - service: light.turn_off
+      data: 
+        entity_id: group.bedroom_lights
+    - service: homeassistant.turn_off
+      data: 
+        entity_id: switch.bedroom_nightstand
+good_night:
+  sequence:
+    - service: light.turn_off
+      data: 
+        entity_id: group.bedroom_lights
+    - service: homeassistant.turn_off
+      data: 
+        entity_id: switch.bedroom_nightstand
+    - service: homeassistant.turn_on
+      data: 
+        entity_id: switch.bedroom_fan
+  
+# For alarm clock automation
+wake_up:
+  sequence:
+    - service: homeassistant.turn_off
+      entity_id: switch.bedroom_fan
+    - service: light.turn_on
+      data: 
+        entity_id: group.bedroom_lights
+        brightness: 255
+        transition: 300
+
+## Vacation mode lights
+# Turns lights on and off after sunset
+vacation_lights:
+  sequence:
+    # wait an hour after sunset
+    - delay:
+        hours: 1
+    # turn lights on for 2 hours after sunset
+    - service: script.bright
+    - delay:
+        hours: 2
+    # turn lights off and wait 2 hours
+    - service: script.all_off
+    - delay:
+        hours: 2    
+    # turn lights on for 30 more minutes
+    - service: script.bright
+    - delay:
+        minutes: 30
+    # turn lights off
+    - service: script.all_off

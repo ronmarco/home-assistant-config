@@ -1,0 +1,114 @@
+##########################################
+##### Sensor
+##########################################
+
+# Dark Sky weather prediction
+  - platform: darksky
+    api_key: !secret ds_api_key
+    monitored_conditions:
+      # - summary
+      # - icon
+      # - nearest_storm_distance
+      # - nearest_storm_bearing
+      - precip_type
+      - precip_intensity
+      - precip_probability
+      - temperature
+      - apparent_temperature
+      # - dew_point
+      # - wind_speed
+      # - wind_bearing
+      - cloud_cover
+      - humidity
+      # - pressure
+      - visibility
+      # - ozone
+      - minutely_summary
+      - hourly_summary
+      - daily_summary
+      - temperature_max
+      - temperature_min
+      - apparent_temperature_max
+      - apparent_temperature_min
+      - precip_intensity_max
+
+# Time & Date
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+
+# Monitor host system
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /home
+      - type: memory_free
+      - type: processor_use
+      - type: last_boot
+
+# Monitor host cpu temp
+  - platform: command_line
+    name: CPU Temp
+    command: "cat /sys/class/thermal/thermal_zone0/temp"
+    unit_of_measurement: "°C"
+    value_template: '{{ value|multiply(0.001)|round }}'
+
+# Speedtest.net
+  - platform: speedtest
+    minute:
+      - 17
+    # hour:
+      # - 0
+      # - 4
+      # - 8
+      # - 12
+      # - 16
+      # - 20
+    monitored_conditions:
+      - ping
+      - download
+      - upload
+
+# Alarm Clock sensors
+  - platform: template
+    sensors:
+      alarm_clock_hour:
+        value_template: '{{ states.input_slider.alarm_clock_hour.state|int }}'
+      alarm_clock_minute:
+        value_template: '{{ states.input_slider.alarm_clock_minute.state|int }}'
+      alarm_clock_time:
+        value_template: >-
+          {{ states.sensor.alarm_clock_hour.state }}:
+          {%- if states.sensor.alarm_clock_minute.state|length == 1 -%}
+            0
+          {%- endif -%}
+            {{ states.sensor.alarm_clock_minute.state }}
+      alarm_clock_time_long:
+        value_template: >-
+          {% if states.sensor.alarm_clock_hour.state|length == 1 -%}
+            0
+          {%- endif -%}
+            {{ states.sensor.alarm_clock_hour.state }}:
+          {%- if states.sensor.alarm_clock_minute.state|length == 1 -%}
+            0
+          {%- endif -%}
+            {{ states.sensor.alarm_clock_minute.state }}
+      date_odd:
+        value_template: >-
+            {%- if states("sensor.date")|list|last|int % 2 == 0 %}
+                even
+            {% else %}
+                odd
+            {%- endif %}
+      batt_multi_sensor:
+        friendly_name: 'Multi-Sensor Battery'
+        value_template: '{{ states.binary_sensor.multi_sensor_4.attributes.battery_level|replace("%","")|int }}'
+        unit_of_measurement: '%'
+        icon_template: >-
+          {% if states.binary_sensor.multi_sensor_4.attributes.battery_level|replace("%","")|int > 90 -%}
+          mdi:battery
+          {%- else -%}
+          mdi:battery-{{ (states.binary_sensor.multi_sensor_4.attributes.battery_level|replace("%","")|int + 5)|round(-1)|int }}
+          {%- endif %}
+          

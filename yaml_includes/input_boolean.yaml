@@ -1,0 +1,14 @@
+## input_boolean
+
+alarm_clock_status:
+  initial: on
+
+vacation_mode:
+  name: "Vacation Mode"
+  initial: off
+  icon: mdi:airplane
+
+friend_visiting:
+  name: "Friend Visiting"
+  initial: off
+  icon: mdi:wallet-travel

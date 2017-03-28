@@ -1,0 +1,25 @@
+## media_player
+
+  - platform: universal
+    name: living_room_tv
+    children:
+      - media_player.living_room
+    commands:
+      turn_on:
+        service: homeassistant.turn_on
+        data:
+          entity_id: remote.tv
+      turn_off:
+        service: homeassistant.turn_off
+        data:
+          entity_id: remote.tv
+      volume_up:
+        service: media_player.volume_up
+        data:
+          entity_id: media_player.living_room
+      volume_down:
+        service: media_player.volume_down
+        data:
+          entity_id: media_player.living_room
+    attributes:
+      state: binary_sensor.tv_status

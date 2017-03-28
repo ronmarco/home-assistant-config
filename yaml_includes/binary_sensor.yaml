@@ -1,0 +1,11 @@
+## Binary sensors
+
+  - platform: template 
+    sensors:
+      humvee_monitor_status:
+        friendly_name: 'Monitor Status'
+        value_template: "{{ states.switch.smart_switch2_7.attributes.current_power_w > 10 }}" 
+      tv_status:
+        friendly_name: 'TV Status'
+        value_template: "{{ states.switch.smart_switch1_3.attributes.current_power_w  > 10 }}" 
+        
