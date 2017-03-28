@@ -1,0 +1,54 @@
+homeassistant:
+  name: HA
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: !secret elevation
+  unit_system: imperial
+  time_zone: America/New_York
+  customize: !include yaml_includes/customize.yaml
+
+frontend:
+http:
+updater:
+discovery:
+conversation:
+history:
+recorder:
+  purge_days: 14
+logbook:
+sun:
+
+## Components
+vera:
+  vera_controller_url: !secret v_url
+  exclude: [18]
+
+emulated_hue:
+  host_ip: !secret host
+  listen_port: 8300
+  expose_by_default: false
+
+notify:
+  - name: pushbullet
+    platform: pushbullet
+    api_key: !secret push_api_key
+
+ifttt:
+  key: !secret if_api_key
+
+tts:
+  platform: google
+
+## Includes
+binary_sensor: !include yaml_includes/binary_sensor.yaml
+device_tracker: !include yaml_includes/device_tracker.yaml
+input_boolean: !include yaml_includes/input_boolean.yaml
+input_select: !include yaml_includes/input_select.yaml
+input_slider: !include yaml_includes/input_slider.yaml
+media_player: !include yaml_includes/media_player.yaml
+remote: !include yaml_includes/remote.yaml
+script: !include yaml_includes/script.yaml
+sensor: !include yaml_includes/sensor.yaml
+switch: !include yaml_includes/switch.yaml
+group: !include yaml_includes/group.yaml
+automation: !include_dir_merge_list yaml_automation/
