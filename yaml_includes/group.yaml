@@ -32,6 +32,7 @@ environment_view:
   icon: mdi:thermometer
   entities:
     - group.environment
+    - group.environment_living_room
 
 network_view:
   view: yes
