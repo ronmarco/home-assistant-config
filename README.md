@@ -2,5 +2,7 @@
 Example [Home Assistant](https://home-assistant.io) configuration.
 
 # Devices
-* [MiCasaVerde Veralite](https://www.amazon.com/gp/product/B007005364/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B007005364&linkCode=as2&tag=ron0fb-20&linkId=2bec7e292a942781fc1220fc9247a83f)
-* [Philips Hue](https://www.amazon.com/gp/product/B014H2OZAC/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B014H2OZAC&linkCode=as2&tag=ron0fb-20&linkId=e1767a9768d68d6f8735d8831f2bd013)
+* Z-Wave Controller - [MiCasaVerde Veralite](http://amzn.to/2nrPhQi)
+* Lighting Control - [Philips Hue](http://amzn.to/2nJc5wV)
+  * Light Bulbs x2 - [Hue Bulbs](http://amzn.to/2nJ89N0)
+* IR Blaster - [Global Cache WF2IR iTach](http://amzn.to/2nrSWxH)
