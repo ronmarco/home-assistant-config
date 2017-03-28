@@ -1,4 +1,4 @@
-# home-assistant-config
+# Home Assistant Configuration
 Example [Home Assistant](https://home-assistant.io) configuration.
 
 # Devices
