@@ -13,4 +13,5 @@ Example [Home Assistant](https://home-assistant.io) configuration.
   * RF Outlets x5 - [Elekcity Outlet](http://amzn.to/2nrS3ou)
 * Voice control - [Echo Dot](http://amzn.to/2ng4nr5)
   * Portable voice control - [Echo Tap](http://amzn.to/2mNqrNI)
-* Network Attached Storage - [FreeNAS](http://www.freenas.org/) (I built my own NAS based on [this motherboard](http://amzn.to/2ng2hHW), but FreeNAS makes [pre-built units](http://amzn.to/2odGb9H)too)
+* Network Attached Storage - [FreeNAS](http://www.freenas.org/) (I built my NAS based on [this motherboard](http://amzn.to/2ng2hHW), but FreeNAS makes [pre-built units](http://amzn.to/2odGb9H) too)
+  * Media Server - [Plex](https://www.plex.tv/)
