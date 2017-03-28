@@ -11,6 +11,7 @@ Example [Home Assistant](https://home-assistant.io) configuration.
 * IR Blaster - [Global Cache WF2IR iTach](http://amzn.to/2nrSWxH)
 * RF Transmitter - [Superheterodyne 433Mhz kit](http://amzn.to/2nJcQ9B)
   * RF Outlets x5 - [Elekcity Outlet](http://amzn.to/2nrS3ou)
+* IP Camera - [Foscam](http://amzn.to/2nrXmEK)
 * Voice control - [Echo Dot](http://amzn.to/2ng4nr5)
   * Portable voice control - [Echo Tap](http://amzn.to/2mNqrNI)
 * Network Attached Storage - [FreeNAS](http://www.freenas.org/) (I built my NAS based on [this motherboard](http://amzn.to/2ng2hHW))
