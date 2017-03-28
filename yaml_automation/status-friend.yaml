@@ -1,0 +1,29 @@
+## Automations for friend status
+
+# Friend status on
+- alias: "stat-friend_Friend Visiting on from device tracker"
+  initial_state: True
+  hide_entity: True
+  trigger:
+    - platform: state
+      entity_id: device_tracker.carolyn_phone
+      from: "not_home"
+      to: "home"
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.friend_visiting
+
+# Friend status off
+- alias: "stat-friend_Friend Visiting off from device tracker"
+  initial_state: True
+  hide_entity: True
+  trigger:
+    - platform: state
+      entity_id: device_tracker.carolyn_phone
+      from: "home"
+      to: "not_home"
+      for:
+        minutes: 10
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.friend_visiting

@@ -1,0 +1,54 @@
+## Automations for Chromecasts
+
+# I use three separate automations so that the tv doesn't turn on when the chromecast initializes into 'off'
+- alias: 'rm-lv-tv_TV off with chromecast from playing'
+  hide_entity: False
+  trigger:
+    platform: state
+    entity_id: media_player.living_room
+    from: 'playing'
+    to: 'off'
+  action:
+    service: homeassistant.turn_off
+    entity_id: media_player.living_room_tv
+
+- alias: 'rm-lv-tv_TV off with chromecast from idle'
+  hide_entity: False
+  trigger:
+    platform: state
+    entity_id: media_player.living_room
+    from: 'idle'
+    to: 'off'
+  action:
+    service: homeassistant.turn_off
+    entity_id: media_player.living_room_tv
+
+- alias: 'rm-lv-tv_TV off with chromecast from paused'
+  hide_entity: False
+  trigger:
+    platform: state
+    entity_id: media_player.living_room
+    from: 'paused'
+    to: 'off'
+  action:
+    service: homeassistant.turn_off
+    entity_id: media_player.living_room_tv
+
+- alias: 'rm-lv-tv_TV on with chromecast'
+  hide_entity: False
+  trigger:
+    platform: state
+    entity_id: media_player.living_room
+    from: 'off'
+  action:
+    service: homeassistant.turn_off
+    entity_id: media_player.living_room_tv
+
+- alias: 'rm-lv-tv_Chromecast volume to 4 on start'
+  hide_entity: False
+  trigger:
+    platform: state
+    entity_id: media_player.living_room
+    from: 'off'
+  action:
+    service: script.living_room_vol_to_4

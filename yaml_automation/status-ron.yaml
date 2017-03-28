@@ -1,0 +1,91 @@
+## Automations for ron's status
+
+# Home status
+- alias: "stat-ron_Home status from device tracker"
+  initial_state: True
+  hide_entity: False
+  trigger:
+    - platform: state
+      entity_id: device_tracker.ron_phone
+      from: 'not_home'
+      to: "home"
+      for:
+        minutes: 3
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.ron_status
+        option: "Home"
+
+# Away status
+- alias: "stat-ron_Away status from device tracker"
+  initial_state: True
+  hide_entity: False
+  trigger:
+    - platform: state
+      entity_id: device_tracker.ron_phone
+      from: 'home'
+      to: "not_home"
+      for:
+        minutes: 10
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.ron_status
+        option: "Away"
+
+# Computer status
+- alias: "stat-ron_Computer status from monitor status"
+  initial_state: True
+  hide_entity: False
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.humvee_monitor_status
+      from: "off"
+      to: "on"
+      for:
+        minutes: 3
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.ron_status
+        option: "Computer"
+
+# TV Status
+- alias: "stat-ron_TV status from chromecast"
+  initial_state: True
+  hide_entity: False
+  trigger:
+    - platform: template
+      value_template:  >-
+        {%- if states.media_player.living_room.attributes.app_name == "YouTube" -%}
+          true
+        {%- elif states.media_player.living_room.attributes.app_name == "Plex" -%}
+          true
+        {%- endif -%}
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.ron_status
+        option: "TV"
+
+# Home status from monitor status
+- alias: "stat-ron_Home status from monitor status"
+  initial_state: True
+  hide_entity: False
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.humvee_monitor_status
+      from: "on"
+      to: "off"
+      # for:
+        # minutes: 3
+  condition:
+    - condition: state
+      entity_id: device_tracker.ron_phone
+      state: "home"
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.ron_status
+        option: "Home"

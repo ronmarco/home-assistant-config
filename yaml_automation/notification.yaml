@@ -1,0 +1,33 @@
+## Automations for notifications
+
+# Battery status
+- alias: "not_Notification when multi-sensor battery is low"
+  initial_state: True
+  hide_entity: False
+  trigger:
+    platform: time
+    after: '06:00'
+  condition:
+    condition: numeric_state
+    entity_id: sensor.batt_multi_sensor
+    below: 20
+  action:
+    service: notify.pushbullet
+    data:
+      message: 'Battery low on Aeotech Multi-Sensor'
+
+# Tank turned off
+- alias: "not_Notification when Tank turns off"
+  initial_state: True
+  hide_entity: False
+  trigger:
+    platform: state
+    entity_id: device_tracker.tank
+    from: 'home'
+    to: 'not_home'
+    for:
+      minutes: 3
+  action:
+    service: notify.pushbullet
+    data:
+      message: 'Tank turned off'

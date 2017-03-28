@@ -1,0 +1,42 @@
+## Bedroom
+
+## Bedroom fan
+- alias: 'rm-bd_Fan off at 12 PM'
+  hide_entity: False
+  trigger:
+    platform: time
+    after: '12:00:00'
+  action:
+    service: homeassistant.turn_off
+    entity_id: switch.bedroom_fan
+
+## Bedroom lighting
+- alias: 'rm-bd_One bulb on with switch at night'
+  hide_entity: False
+  trigger:
+    platform: numeric_state
+    entity_id: light.lux_lamp
+    value_template: '{{ state.attributes.brightness }}'
+    above: 250
+    below: 260
+  action:
+    service: script.bright
+
+- alias: 'rm-bd_One bulb off at sunset'
+  hide_entity: False
+  trigger:
+    platform: sun
+    # Possible values: sunset, sunrise
+    event: sunset
+    # Optional time offset. This example is 45 minutes.
+    offset: '-00:45:00'
+  condition:
+    # condition: and
+    # conditions:
+      - condition: numeric_state
+        entity_id: light.lux_lamp
+        value_template: '{{ state.attributes.brightness }}'
+        above: 250
+        below: 260
+  action:
+    service: script.bright
