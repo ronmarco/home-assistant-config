@@ -18,4 +18,4 @@ See below for my latest Home Assistant configuration. I tried to keep the UI sim
   * Media Server - [Plex](https://www.plex.tv/)
 
 # Screenshots
-![screenshot](images/1 home.png)
+![screenshot](images/1.home.png)
