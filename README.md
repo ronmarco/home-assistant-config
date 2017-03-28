@@ -1,5 +1,5 @@
 # Home Assistant Configuration
-See below for my latest Home Assistant configuration. I tried to keep the UI simple and use automations for most of the device interaction. 
+See below for my latest Home Assistant configuration. I kept the UI simple and used automations for most of the interactions with devices.
 
 # Devices
 * Z-Wave Controller - [MiCasaVerde Veralite](http://amzn.to/2nrPhQi)
