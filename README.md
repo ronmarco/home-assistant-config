@@ -1,5 +1,5 @@
 # Home Assistant Configuration
-Example [Home Assistant](https://home-assistant.io) configuration.
+See below for my latest Home Assistant configuration. I tried to keep the UI simple and use automations for most of the device interaction. 
 
 # Devices
 * Z-Wave Controller - [MiCasaVerde Veralite](http://amzn.to/2nrPhQi)
