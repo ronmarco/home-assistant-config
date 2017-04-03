@@ -2,8 +2,6 @@
 
 # Home status
 - alias: "stat-ron_Home status from device tracker"
-  initial_state: True
-  hide_entity: False
   trigger:
     - platform: state
       entity_id: device_tracker.ron_phone
@@ -15,12 +13,10 @@
     - service: input_select.select_option
       data:
         entity_id: input_select.ron_status
-        option: "Home"
+        option: "At Home"
 
 # Away status
 - alias: "stat-ron_Away status from device tracker"
-  initial_state: True
-  hide_entity: False
   trigger:
     - platform: state
       entity_id: device_tracker.ron_phone
@@ -36,8 +32,6 @@
 
 # Computer status
 - alias: "stat-ron_Computer status from monitor status"
-  initial_state: True
-  hide_entity: False
   trigger:
     - platform: state
       entity_id: binary_sensor.humvee_monitor_status
@@ -49,12 +43,10 @@
     - service: input_select.select_option
       data:
         entity_id: input_select.ron_status
-        option: "Computer"
+        option: "Using Computer"
 
 # TV Status
 - alias: "stat-ron_TV status from chromecast"
-  initial_state: True
-  hide_entity: False
   trigger:
     - platform: template
       value_template:  >-
@@ -67,12 +59,10 @@
     - service: input_select.select_option
       data:
         entity_id: input_select.ron_status
-        option: "TV"
+        option: "Watching TV"
 
 # Home status from monitor status
 - alias: "stat-ron_Home status from monitor status"
-  initial_state: True
-  hide_entity: False
   trigger:
     - platform: state
       entity_id: binary_sensor.humvee_monitor_status
@@ -88,4 +78,4 @@
     - service: input_select.select_option
       data:
         entity_id: input_select.ron_status
-        option: "Home"
+        option: "At Home"

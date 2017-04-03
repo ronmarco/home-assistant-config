@@ -1,21 +1,12 @@
 ##### Automations for Alarm Clock #####
+
 - alias: 'almclk_wake_up script triggered by alarm clock'
-  hide_entity: False
   trigger:
     platform: template
     value_template: '{{ states.sensor.time.state == states.sensor.alarm_clock_time_long.state }}'
   condition:
-    # condition: and
-    # conditions:
-      - condition: state
-        entity_id: input_boolean.alarm_clock_status
-        state: 'on'
-      # - condition: time
-        # weekday:
-          # - mon
-          # - tue
-          # - wed
-          # - thu
-          # - fri
+    condition: state
+    entity_id: input_boolean.alarm_clock_status
+    state: 'on'
   action:
     service: script.wake_up

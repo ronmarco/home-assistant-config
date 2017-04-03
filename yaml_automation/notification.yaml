@@ -2,8 +2,6 @@
 
 # Battery status
 - alias: "not_Notification when multi-sensor battery is low"
-  initial_state: True
-  hide_entity: False
   trigger:
     platform: time
     after: '06:00'
@@ -16,10 +14,26 @@
     data:
       message: 'Battery low on Aeotech Multi-Sensor'
 
+# Humvee left on
+- alias: "not_Notification when Humvee left on"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.humvee_monitor_status
+    from: "on"
+    to: "off"
+    for:
+      hours: 1  
+  condition:
+    condition: state
+    entity_id: device_tracker.humvee
+    state: "home"
+  action:
+    service: notify.pushbullet
+    data:
+      message: 'Humvee left on'
+
 # Tank turned off
 - alias: "not_Notification when Tank turns off"
-  initial_state: True
-  hide_entity: False
   trigger:
     platform: state
     entity_id: device_tracker.tank
@@ -31,3 +45,18 @@
     service: notify.pushbullet
     data:
       message: 'Tank turned off'
+
+# Record speedtests
+- alias: 'not_Speed test record'
+  trigger:
+    platform: state
+    entity_id: sensor.speedtest_upload
+  action:
+    - delay:
+        seconds: 30
+    - service: ifttt.trigger
+      data_template:
+        event: 'HA_speedtest_trigger'
+        value1: '{{ states("sensor.speedtest_download") }}'
+        value2: '{{ states("sensor.speedtest_upload") }}'
+        value3: '{{ states("sensor.speedtest_ping") }}'

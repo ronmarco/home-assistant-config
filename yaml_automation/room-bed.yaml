@@ -2,7 +2,6 @@
 
 ## Bedroom fan
 - alias: 'rm-bd_Fan off at 12 PM'
-  hide_entity: False
   trigger:
     platform: time
     after: '12:00:00'
@@ -12,7 +11,6 @@
 
 ## Bedroom lighting
 - alias: 'rm-bd_One bulb on with switch at night'
-  hide_entity: False
   trigger:
     platform: numeric_state
     entity_id: light.lux_lamp
@@ -23,7 +21,6 @@
     service: script.bright
 
 - alias: 'rm-bd_One bulb off at sunset'
-  hide_entity: False
   trigger:
     platform: sun
     # Possible values: sunset, sunrise

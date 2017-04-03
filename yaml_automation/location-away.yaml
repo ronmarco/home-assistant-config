@@ -1,7 +1,6 @@
 ## Automations for when I'm Away 
 
 - alias: 'loc-away_Devices off when away'
-  hide_entity: False
   trigger:
     platform: state
     entity_id: input_select.ron_status
@@ -15,11 +14,10 @@
     entity_id: group.living_room, group.bedroom
 
 - alias: 'loc-away_Devices in bedroom off when at the computer'
-  hide_entity: False
   trigger:
     platform: state
     entity_id: input_select.ron_status
-    state: "Computer"
+    state: "Using Computer"
   condition:
     condition: state
     entity_id: input_boolean.friend_visiting
@@ -29,11 +27,10 @@
     entity_id: group.bedroom
 
 - alias: 'loc-away_Devices on desk off when leave the computer'
-  hide_entity: False
   trigger:
     platform: state
     entity_id: input_select.ron_status
-    from: "Computer"
+    from: "Using Computer"
   action:
     service: homeassistant.turn_off
     entity_id: switch.amp

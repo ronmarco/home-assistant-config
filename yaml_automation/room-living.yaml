@@ -1,7 +1,6 @@
 ## Living room automations
 
 - alias: 'rm-lv_Amp off at 3 AM'
-  hide_entity: False
   trigger:
     platform: time
     after: '03:00:00'
@@ -11,7 +10,6 @@
 
 # Turn off amp with Humvee computer
 - alias: 'rm-lv_Amp off with Humvee'
-  hide_entity: False
   trigger:
     platform: state
     entity_id: device_tracker.humvee

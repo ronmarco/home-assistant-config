@@ -2,8 +2,6 @@
 
 # Friend status on
 - alias: "stat-friend_Friend Visiting on from device tracker"
-  initial_state: True
-  hide_entity: True
   trigger:
     - platform: state
       entity_id: device_tracker.carolyn_phone
@@ -15,8 +13,6 @@
 
 # Friend status off
 - alias: "stat-friend_Friend Visiting off from device tracker"
-  initial_state: True
-  hide_entity: True
   trigger:
     - platform: state
       entity_id: device_tracker.carolyn_phone
