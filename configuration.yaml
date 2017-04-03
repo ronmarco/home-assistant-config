@@ -24,7 +24,7 @@ vera:
   exclude: [18]
 
 emulated_hue:
-  host_ip: !secret host
+  host_ip: !secret ha_host
   listen_port: 8300
   expose_by_default: false
 
