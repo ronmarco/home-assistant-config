@@ -3,9 +3,9 @@
 ron_status:
   name: Ron Status
   options:
-   - "Home"
-   - "Away"
-   - "Computer"
-   - "TV"
+   - "Using Computer"
+   - "Watching TV"
    - "Sleeping"
-  initial: "Home"
+   - "At Home"
+   - "Away"
+  initial: "At Home"

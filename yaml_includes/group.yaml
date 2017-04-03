@@ -9,6 +9,7 @@ default_view:
     - group.bedroom
     - group.alarm_clock
     - group.status
+    - media_player.living_room_tv
 
 bedroom_view:
   view: yes
@@ -25,6 +26,7 @@ living_room_view:
   icon: mdi:sofa
   entities:
     - group.living_room
+    - media_player.living_room_tv
 
 environment_view:
   view: yes
@@ -49,58 +51,50 @@ network_view:
 ## Card code
 
 automation_almclk:
-  name: "Automation - Alarm Clock"
+  name: "Automation || Alarm Clock"
   entities:
     - automation.almclk_wake_up_script_triggered_by_alarm_clock
 
-automation_ifttt:
-  name: "Automation - IFTTT"
-  entities:
-    - automation.ifttt_speed_test_record
-
 automation_locaway:
-  name: "Automation - Away"
+  name: "Automation || Away"
   entities:
     - automation.locaway_devices_in_bedroom_off_when_at_the_computer
     - automation.locaway_devices_off_when_away
     - automation.locaway_devices_on_desk_off_when_leave_the_computer
 
 automation_not:
-  name: "Automation - Notifications"
+  name: "Automation || Notifications"
   entities:
+    - automation.not_notification_when_humvee_left_on
     - automation.not_notification_when_multisensor_battery_is_low
     - automation.not_notification_when_tank_turns_off
+    - automation.not_speed_test_record
 
 automation_rmbd:
-  name: "Automation - Bedroom"
+  name: "Automation || Bedroom"
   entities:
     - automation.rmbd_fan_off_at_12_pm
     - automation.rmbd_one_bulb_off_at_sunset
     - automation.rmbd_one_bulb_on_with_switch_at_night
 
 automation_rmlv:
-  name: "Automation - Living Room"
+  name: "Automation || Living Room"
   entities:
     - automation.rmlv_amp_off_at_3_am
     - automation.rmlv_amp_off_with_humvee
 
 automation_rmlvtv:
-  name: "Automation - Living Room TV"
+  name: "Automation || Living Room TV"
   entities:
     - automation.rmlvtv_chromecast_volume_to_4_on_start
     - automation.rmlvtv_tv_off_with_chromecast_from_playing
     - automation.rmlvtv_tv_off_with_chromecast_from_idle
     - automation.rmlvtv_tv_off_with_chromecast_from_paused
     - automation.rmlvtv_tv_on_with_chromecast
-
-automation_statfriend:
-  name: "Automation - Friend Status"
-  entities:
-    - automation.statfriend_friend_visiting_off_from_device_tracker
-    - automation.statfriend_friend_visiting_on_from_device_tracker
+    - automation.rmlvtv_turn_off_tv_if_chromecast_off
 
 automation_statron:
-  name: "Automation - Ron Status"
+  name: "Automation || Ron Status"
   entities:
     - automation.statron_away_status_from_device_tracker
     - automation.statron_computer_status_from_monitor_status
@@ -108,11 +102,29 @@ automation_statron:
     - automation.statron_home_status_from_device_tracker
     - automation.statron_home_status_from_monitor_status
 
+automation_statfriend:
+  name: "Automation || Friend Status"
+  entities:
+    - automation.statfriend_friend_visiting_off_from_device_tracker
+    - automation.statfriend_friend_visiting_on_from_device_tracker
+
+automation_statvac:
+  name: "Automation - Vacation Status"
+  entities:
+    - automation.statvac_vacation_mode_off_when_home
+    - automation.statvac_vacation_mode_on_when_gone_24_hours
+
+status:
+  name: "Status"
+  entities:
+    - input_select.ron_status
+    - input_boolean.friend_visiting
+    - input_boolean.vacation_mode
+
 living_room:
   name: "Living Room"
   entities:
     - switch.amp
-    - media_player.living_room_tv
 
 bedroom:
   name: "Bedroom"
@@ -125,7 +137,7 @@ bedroom:
     - script.good_night
 
 bedroom_devices:
-  name: "Bedroom | Devices"
+  name: "Bedroom || Devices"
   entities:
     - group.bedroom_lights
     - switch.bedroom_nightstand
@@ -146,7 +158,7 @@ alarm_clock:
     - input_boolean.alarm_clock_status
 
 environment:
-  name: "Environment | Forecast"
+  name: "Environment || Forecast"
   entities:
     - sensor.dark_sky_minutely_summary
     - sensor.dark_sky_apparent_temperature
@@ -171,14 +183,8 @@ environment_detail:
     - sensor.dark_sky_visibility
     - sun.sun
 
-automation_statvac:
-  name: "Automation - Vacation Status"
-  entities:
-    - automation.statvac_vacation_mode_off_when_home
-    - automation.statvac_vacation_mode_on_when_gone_24_hours
-
 environment_living_room:
-  name: "Environment | Living Room"
+  name: "Environment || Living Room"
   entities:
     - sensor.temperature_sensor_12
     - sensor.light_sensor_13
@@ -186,22 +192,15 @@ environment_living_room:
     - binary_sensor.multi_sensor_4
     - sensor.batt_multi_sensor
 
-status:
-  name: "Status"
-  entities:
-    - input_select.ron_status
-    - input_boolean.friend_visiting
-    - input_boolean.vacation_mode
-
 phones:
-  name: "LAN | Phones"
+  name: "LAN || Phones"
   entities:
     - device_tracker.ron_phone
     - device_tracker.daniel_phone
     - device_tracker.carolyn_phone
 
 personal_devices:
-  name: "LAN | Computers"
+  name: "LAN || Computers"
   entities:
     - device_tracker.humvee
     - device_tracker.tank
@@ -209,7 +208,7 @@ personal_devices:
     - device_tracker.bazooka
 
 iot_devices:
-  name: "LAN | IoT"
+  name: "LAN || IoT"
   entities:
     - device_tracker.vera_lite
     - device_tracker.hue_hub
@@ -219,7 +218,7 @@ iot_devices:
     - device_tracker.chromecast
     - device_tracker.chromecast_2
     - device_tracker.echo_dot
-    - device_tracker.echo_tab
+    - device_tracker.echo_tap
     - device_tracker.withings_scale
 
 network:
@@ -242,3 +241,6 @@ misc_devices:
   name: "Misc Devices"
   entities:
     - device_tracker.gear_fit_2
+
+
+

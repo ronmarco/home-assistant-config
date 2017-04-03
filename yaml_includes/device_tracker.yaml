@@ -7,11 +7,11 @@
   username: !secret r_username
   password: !secret r_password
   track_new_devices: no
-# - platform: nmap_tracker
-  # hosts:
-    # - !secret humvee_ip
-    # - !secret tank_ip
-  # home_interval: 10
-  # exclude:
-   # - 192.168.1.12
-   # - 192.168.1.13
+
+- platform: nmap_tracker
+  hosts:
+    - !secret humvee_ip
+    - !secret tank_ip
+  home_interval: 10
+  exclude:
+    - !secret ha_host
